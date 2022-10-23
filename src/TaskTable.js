@@ -18,7 +18,13 @@ export default function TaskTable(props) {
                 <td>{task.task}</td>
                 <td>{task.assign}</td>
                 <td>
-                  <button>Edit</button>
+                  <button
+                    onClick={() => {
+                      props.editTask(task);
+                    }}
+                  >
+                    Edit
+                  </button>
                   <button
                     onClick={() => {
                       props.deleteTask(task.id);

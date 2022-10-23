@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function AddTaskForm(props) {
-  const initialFormState = { id: null, task: "", assign: "" };
-  const [task, setTask] = useState(initialFormState);
+export default function EditTaskForm(props) {
+  const [task, setTask] = useState(props.currentTask);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setTask({ ...task, [name]: value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    props.addTask(task);
-    setTask(initialFormState);
-  };
+  useEffect(() => {
+    setTask(props.currentTask);
+  }, [props]);
 
   return (
     <div className="AddTaskForm">
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          props.updateTask(task.id, task);
+        }}
+      >
         <label>Task</label>
         <input
           type="text"
@@ -32,7 +34,8 @@ export default function AddTaskForm(props) {
           value={task.assign}
           onChange={handleInputChange}
         />
-        <input type="submit" />
+        <input type="submit" value="Update" />
+        <button onClick={() => props.setEditing(false)}>Cancel</button>
       </form>
     </div>
   );
