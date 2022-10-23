@@ -1,0 +1,20 @@
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-large {
+  flex-basis: 100%;
+}
+
+/* Small screen breakpoint */
+@media (min-width) {
+}
+
+/* Large screen breakpoint */
+@media (min-width: 1000px) {
+  .flex-large {
+    flex: 1;
+  }
+}
