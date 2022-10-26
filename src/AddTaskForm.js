@@ -11,8 +11,11 @@ export default function AddTaskForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.addTask(task);
-    setTask(initialFormState);
+    console.log();
+    if (task.task !== "") {
+      props.addTask(task);
+      setTask(initialFormState);
+    }
   };
 
   return (
@@ -32,7 +35,7 @@ export default function AddTaskForm(props) {
           value={task.assign}
           onChange={handleInputChange}
         />
-        <input type="submit" />
+        <input type="submit" value="Add Task" />
       </form>
     </div>
   );
